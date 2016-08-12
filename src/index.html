@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoListApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo list</title>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+</head>
+
+<body ng-controller="mainCtrl">
+    <div class="container well col-lg-4 text-center">
+        <h1>Simple Todo's App</h1>
+        <form>
+            <div class="form-group">
+                <div>
+                    <label>Enter a Task</label>
+                    <input ng-model="myObject.name" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Set priority</label>
+                <select ng-model="myObject.priority">
+                    <option value="1">A high priority item</option>
+                    <option value="2">A medium priority item</option>
+                    <option value="3">A low priority item</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="addy()">Add</button>
+    </div>
+    </form>
+    </div>
+    <div class="container col-lg-6 text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-danger" ng-click="sort = 'priority'">Order by highest priority</button>
+            <button type="button" class="btn btn-primary" ng-click="sort = '-priority'">Order by lowest priority</button>
+            <button type="button" class="btn btn-warning" ng-click="sort = 'name'">Order alphabetically</button>
+        </div>
+        <div id="listItem">
+            <ul>
+                <li ng-repeat="item in myArray | orderBy: sort" class="alert" ng-class=" {'alert-danger' : item.priority === '1' , 'alert-warning' :  item.priority === '2', 'alert-success' : item.priority ==='3'}">{{item.name}}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+<!-- bower:js -->
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="js/app.js"></script>
+<!-- endinject -->
+</body>
+
+</html>
